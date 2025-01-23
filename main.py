@@ -1,16 +1,22 @@
 def main(): 
-    with open("books/frankenstein.txt") as pth:
-        file_contents = pth.read()
-    print(file_contents)
+    path = "books/frankenstein.txt"
+    book_text = get_text(path)
+    character_count = charactercount(book_text)
+    print(character_count)
 
 def wordcount(str):
     words = str.split()
-    word_count = 0
-    for word in words:
-        word_count += 1
-    print(word_count)
-    return(word_count)
+    return len(words)
 
-with open("books/frankenstein.txt") as pth:
-    file_contents = pth.read()
-    wordcount(file_contents)
+def get_text(path):
+    with open(path) as pth:
+        return pth.read()
+
+def charactercount(str):
+    characters = {}
+    for character in str:
+        lwr = character.lower()
+        characters[lwr] += 1
+    return characters
+
+main()
